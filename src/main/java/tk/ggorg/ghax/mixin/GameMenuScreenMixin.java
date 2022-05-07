@@ -17,10 +17,15 @@ public class GameMenuScreenMixin extends Screen {
         super(text);
     }
 
-    @Inject(at = @At("HEAD"), method = "initWidgets")
+    @Inject(at = @At("TAIL"), method = "initWidgets")
     private void initWidgets(CallbackInfo ci) {
-        this.addDrawableChild(new ButtonWidget(10, 10, 90, 20, new LiteralText("GHax menu"), btn -> {
-            this.client.setScreen(new GHaxMenuScreen(this, this.client.options));
-        }));
+        this.addDrawableChild(
+                new ButtonWidget(this.width / 2 - 102, this.height / 4 + 144 - 16, 204, 20,
+                        new LiteralText("GHax menu"), btn -> this.client.setScreen(GHaxMenuScreen.getInstance())));
+    }
+
+    @Inject(at = @At("HEAD"), method = "init")
+    private void init(CallbackInfo ci) {
+        new GHaxMenuScreen(this);
     }
 }
