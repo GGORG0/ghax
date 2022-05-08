@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class HackList {
     public final FlyHack flyHack = new FlyHack();
+    public final SprintHack sprintHack = new SprintHack();
 
     public final List<Hack> hacks = new ArrayList<>();
 

@@ -24,6 +24,7 @@ public class FlyHack extends Hack implements TickListener {
         this.setConfigScreen(new FlyHackConfigScreen(this));
     }
 
+    @Override
     public void onTick() {
         if(this.client.player != null){
             final boolean jumpPressed = this.client.options.jumpKey.isPressed();
