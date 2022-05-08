@@ -1,6 +1,14 @@
 package tk.ggorg.ghax.hack;
 
 import net.minecraft.client.MinecraftClient;
+import tk.ggorg.ghax.GHax;
+import tk.ggorg.ghax.events.Event;
+import tk.ggorg.ghax.utils.ChatUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EventListener;
+import java.util.List;
 
 public abstract class Hack {
     private final String name;
@@ -9,14 +17,17 @@ public abstract class Hack {
 
     private HackConfigScreen configScreen;
 
-    private final MinecraftClient client = MinecraftClient.getInstance();
+    protected final MinecraftClient client = GHax.client;
 
     private boolean enabled;
 
-    public Hack(String name, String description, String internalName) {
+    private final List<Event> events = new ArrayList<>();
+
+    public Hack(String name, String description, String internalName, Event[] events) {
         this.name = name;
         this.description = description;
         this.internalName = internalName;
+        this.events.addAll(Arrays.asList(events));
     }
 
     public final String getName() {
@@ -35,16 +46,35 @@ public abstract class Hack {
         return this.internalName;
     }
 
+    private void registerEvents() {
+        for (Event event : this.events) {
+            event.register((EventListener) this);
+        }
+    }
+
+    private void unregisterEvents() {
+        for (Event event : this.events) {
+            event.unregister((EventListener) this);
+        }
+    }
+
     public final void enable() {
         this.enabled = true;
+        this.registerEvents();
+        this.onEnable();
+        ChatUtils.showHackMessage(this, ChatUtils.FORMAT + "a" + "Enabled");
     }
 
     public final void disable() {
         this.enabled = false;
+        this.unregisterEvents();
+        this.onDisable();
+        ChatUtils.showHackMessage(this, ChatUtils.FORMAT + "c" + "Disabled");
     }
 
     public final void toggle() {
-        this.enabled = !this.enabled;
+        if(this.isEnabled()) disable();
+        else enable();
     }
 
     public final boolean isEnabled() {
@@ -58,4 +88,7 @@ public abstract class Hack {
     public final void setConfigScreen(HackConfigScreen screen) {
         this.configScreen = screen;
     }
+
+    private void onEnable() {}
+    private void onDisable() {}
 }

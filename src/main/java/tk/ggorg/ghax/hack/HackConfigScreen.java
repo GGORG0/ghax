@@ -8,10 +8,10 @@ import net.minecraft.text.LiteralText;
 import tk.ggorg.ghax.GHaxMenuScreen;
 
 
-public class HackConfigScreen extends Screen {
-    private final Hack parentHack;
+public class HackConfigScreen<T extends Hack> extends Screen {
+    protected final T parentHack;
 
-    public HackConfigScreen(Hack parentHack) {
+    public HackConfigScreen(T parentHack) {
         super(new LiteralText(parentHack.getName()));
         this.parentHack = parentHack;
     }
@@ -31,8 +31,10 @@ public class HackConfigScreen extends Screen {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.renderBackground(matrices);
-        HackConfigScreen.drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 40,
+        HackConfigScreen.drawCenteredText(matrices, this.textRenderer, this.parentHack.getName(), this.width / 2, 40,
                 this.parentHack.isEnabled() ? 0x00FF00 : 0xFF0000);
+
+        HackConfigScreen.drawCenteredText(matrices, this.textRenderer, this.parentHack.getDescription(), this.width / 2, 60, 0xFFFFFF);
         super.render(matrices, mouseX, mouseY, delta);
     }
 }

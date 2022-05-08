@@ -1,6 +1,7 @@
 package tk.ggorg.ghax;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.MinecraftClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tk.ggorg.ghax.events.EventList;
@@ -12,6 +13,8 @@ public class GHax implements ModInitializer {
     public static final String modId = "ghax";
 
     public static final Logger LOGGER = LoggerFactory.getLogger(modId);
+
+    public static final MinecraftClient client = MinecraftClient.getInstance();
 
     public static final EventList eventList = new EventList();
 

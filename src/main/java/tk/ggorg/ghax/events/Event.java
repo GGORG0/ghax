@@ -24,4 +24,8 @@ public class Event<T extends EventListener> {
     public void register(T listener) {
         listeners.add(listener);
     }
+
+    public void unregister(T listener) {
+        listeners.remove(listener);
+    }
 }
