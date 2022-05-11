@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "ghax",
-  "version": "${version}",
+  "version": "1.0.0",
   "name": "GHax",
   "description": "A simple cheatpack with some useful features",
   "authors": [
@@ -17,6 +17,9 @@
   "entrypoints": {
     "main": [
       "tk.ggorg.ghax.GHax"
+    ],
+    "client": [
+      "tk.ggorg.ghax.GHaxClient"
     ]
   },
   "mixins": [
@@ -25,6 +28,7 @@
   "depends": {
     "fabricloader": ">=0.14.4",
     "fabric": "*",
-    "minecraft": "1.18.2"
+    "minecraft": "1.18.2",
+    "fabric-key-binding-api-v1": "*"
   }
 }

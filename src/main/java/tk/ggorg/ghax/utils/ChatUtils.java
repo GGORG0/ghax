@@ -9,7 +9,7 @@ public class ChatUtils {
     private static final String PREFIX = FORMAT + "9" + "[" + FORMAT + "c" + "GHax" + FORMAT + "9" + "]" + FORMAT + "a" + " ";
 
     public static void showMessage(String message) {
-        GHax.client.inGameHud.getChatHud().addMessage(new LiteralText(PREFIX + message));
+        GHax.client.player.sendMessage(new LiteralText(PREFIX + message), false);
     }
 
     public static void showHackMessage(Hack hack, String message) {

@@ -26,18 +26,18 @@ public class GHaxMenuScreen extends Screen {
     protected void init() {
         for(int i = 0; i < GHax.hackList.hacks.size(); i++){
             Hack hack = GHax.hackList.hacks.get(i);
-            this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 40 + i*48, 175, 20,
+            this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 10 + i*25, 175, 20,
                     new LiteralText(hack.getButtonText()), btn -> {
                 hack.toggle();
                 this.clearChildren();
                 this.init();
             }));
 
-            this.addDrawableChild(new ButtonWidget(this.width / 2 + 80, this.height / 6 + 40 + i*48, 20, 20,
+            this.addDrawableChild(new ButtonWidget(this.width / 2 + 80, this.height / 6 + 10 + i*25, 20, 20,
                     new LiteralText(">"), btn -> hack.openConfigScreen()));
         }
 
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 138, 200, 20,
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height - 40, 200, 20,
                 ScreenTexts.DONE, btn -> this.client.setScreen(this.parent)));
     }
 

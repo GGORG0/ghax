@@ -16,7 +16,7 @@ public class Event<T extends EventListener> {
                 method.invoke(listener);
             }
             catch (IllegalAccessException|InvocationTargetException e){
-                GHax.LOGGER.error("[Event] Error while firing event! (On element " + listener.getClass().getName() + "." + method.getName() + ")");
+                GHax.LOGGER.error("[Event] Error while firing event! (On element " + listener.getClass().getName() + "." + method.getName() + ")" + "\n" + e.getMessage());
             }
         }
     }

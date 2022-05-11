@@ -30,6 +30,10 @@ public abstract class Hack {
         this.events.addAll(Arrays.asList(events));
     }
 
+    public Hack(String name, String description, String internalName) {
+        this(name, description, internalName, new Event[0]);
+    }
+
     public final String getName() {
         return this.name;
     }
@@ -59,6 +63,7 @@ public abstract class Hack {
     }
 
     public final void enable() {
+        if(this.isEnabled()) return;
         this.enabled = true;
         this.registerEvents();
         this.onEnable();
@@ -66,6 +71,7 @@ public abstract class Hack {
     }
 
     public final void disable() {
+        if(!this.isEnabled()) return;
         this.enabled = false;
         this.unregisterEvents();
         this.onDisable();
@@ -89,6 +95,6 @@ public abstract class Hack {
         this.configScreen = screen;
     }
 
-    private void onEnable() {}
-    private void onDisable() {}
+    protected void onEnable() {}
+    protected void onDisable() {}
 }

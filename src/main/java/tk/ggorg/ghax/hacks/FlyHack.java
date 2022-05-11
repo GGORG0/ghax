@@ -8,11 +8,12 @@ import tk.ggorg.ghax.events.TickListener;
 import tk.ggorg.ghax.hack.Hack;
 
 public class FlyHack extends Hack implements TickListener {
-    public int maxSpeed = 3;
-    public double fallSpeed = -0.04;
+    public float maxSpeed = 2f;
+    public float fallSpeed = -0.04f;
     public double acceleration = 0.1;
 
     private int cooldown = 0;
+    public int cooldownTime = 40;
 
     public FlyHack() {
         super(
@@ -69,7 +70,7 @@ public class FlyHack extends Hack implements TickListener {
             }
 
             if(cooldown == 0 || newVelocity.y <= fallSpeed) {
-                cooldown = 40;
+                cooldown = cooldownTime;
             }
             cooldown--;
         }

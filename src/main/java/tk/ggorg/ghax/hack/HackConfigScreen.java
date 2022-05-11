@@ -17,14 +17,14 @@ public class HackConfigScreen<T extends Hack> extends Screen {
     }
 
     protected void init() {
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 40, 200, 20,
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 4 + 10, 200, 20,
                 new LiteralText(this.parentHack.isEnabled() ? "Disable" : "Enable"), btn -> {
             this.parentHack.toggle();
             this.clearChildren();
             this.init();
         }));
 
-        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 6 + 138, 200, 20,
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height - 40, 200, 20,
                 ScreenTexts.DONE, btn -> this.client.setScreen(GHaxMenuScreen.getInstance())));
     }
 
