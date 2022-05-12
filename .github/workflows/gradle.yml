@@ -7,14 +7,7 @@
 
 name: Java CI with Gradle
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-permissions:
-  contents: read
+on: push
 
 jobs:
   build:
